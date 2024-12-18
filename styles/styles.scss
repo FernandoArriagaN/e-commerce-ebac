@@ -1,0 +1,278 @@
+
+  $primary-color: #534c4c;
+  $secondary-color: rgb(61, 61, 61);
+  $highlight-color: #970303;
+  $font-family: 'Lexend', Arial, Helvetica, sans-serif;
+  $font-weight-light: 300;
+  $font-weight-medium: 500;
+  $font-weight-bold: 700;
+  $banner-bg: url("../img/banner.jpg");
+  
+ 
+
+
+  @mixin center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin box-shadow($shadow-color: rgba(0, 0, 0, 0.2)) {
+    box-shadow: 5px 4px 8px $shadow-color;
+  }
+
+
+
+
+  /* Placeholder estilos comunes */
+  %text-center {
+    text-align: center;
+  }
+  
+
+  body {
+    width: 100%;
+    font-size: 15px;
+    font-weight: $font-weight-light;
+    color: $primary-color;
+    font-family: $font-family;
+    margin: 0;
+  }
+  
+
+  .header {
+    width: 100%;
+    background-color: $secondary-color;
+    display: flex;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    color: #fff;
+  
+    &__logo {
+      width: 150px;
+    }
+  
+    &__menu {
+      display: flex;
+      gap: 50px;
+    }
+  
+    &__nav {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    &__link {
+      font-size: 0.9rem;
+      font-weight: $font-weight-bold;
+    }
+  
+    &__user {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  
+    &__icon {
+      cursor: pointer;
+  
+      &--secondary {
+        opacity: 0.6;
+      }
+    }
+  }
+  
+
+  .banner {
+    width: 100%;
+    margin-top: 20px;
+    padding: 40px 0;
+    color: #fff;
+    @extend %text-center;
+    background-image: $banner-bg;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    @include box-shadow(rgba(0, 0, 0, 0.3));
+  
+    &__title {
+      font-weight: 600;
+      font-size: 36px;
+      margin: 10px;
+      color: $highlight-color;
+    }
+  
+    &__description {
+      width: 350px;
+      margin: 0 auto;
+      font-size: 25px;
+      opacity: 0.7;
+    }
+  }
+  
+
+  .products {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  
+    .product {
+      cursor: pointer;
+      @extend %text-center;
+  
+      img {
+        width: 70%;
+        margin-bottom: 15px;
+      }
+  
+      &__title {
+        font-weight: $font-weight-medium;
+        font-size: 17px;
+        margin-bottom: 5px;
+      }
+  
+      &__price {
+        font-weight: $font-weight-light;
+        font-size: 15px;
+      }
+    }
+  }
+  
+
+  .cart {
+    width: 500px;
+    padding: 25px;
+    box-sizing: border-box;
+    height: 100%;
+    position: fixed;
+    right: -50%;
+    top: 100px;
+    @include box-shadow(rgba(0, 0, 0, 0.3));
+    border: 3px solid #ebebeb;
+    border-radius: 26px;
+    backdrop-filter: blur(10px);
+  
+    &__title {
+      width: 100%;
+      @extend %text-center;
+      font-weight: 600;
+      padding: 25px 0;
+    }
+  
+    &__item {
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      box-sizing: border-box;
+  
+      img {
+        width: 60px;
+      }
+  
+      &-description {
+        font-weight: $font-weight-medium;
+      }
+  
+      &-delete {
+        cursor: pointer;
+      }
+    }
+  }
+  
+
+  
+  /* Responsive */
+  @media screen and (max-width: 820px) {
+    .header {
+      padding: 15px;
+  
+      &__icon img {
+        width: 60px;
+      }
+  
+      &__nav {
+        display: none;
+      }
+    }
+  
+    .products {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  
+      img {
+        width: 150px;
+      }
+    }
+  
+    .cart {
+      width: 100%;
+      top: 80px;
+      right: 0;
+  
+      &__item {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .banner {
+      padding: 30px;
+  
+      &__title {
+        font-size: 18px;
+      }
+  
+      &__description {
+        font-size: 16px;
+      }
+    }
+  
+    .products {
+      grid-template-columns: 1fr;
+      padding: 10px;
+  
+      img {
+        width: 100%;
+        max-width: 200px;
+        margin-bottom: 10px;
+      }
+    }
+  
+    .cart {
+      width: 100%;
+      box-shadow: none;
+      border: none;
+      align-items: center;
+      right: 0;
+  
+      &__title {
+        padding: 15px 0;
+      }
+  
+      &__item {
+        flex-direction: column;
+        align-items: center;
+  
+        img {
+          width: 100px;
+        }
+  
+        &-description {
+          margin: 0;
+        }
+  
+        &-delete {
+          cursor: pointer;
+        }
+      }
+    }
+  }
